@@ -34,7 +34,7 @@
 
 ### 4、核心API
 
-<img src="\JavaPic\producer_consumer.png" style="zoom:50%" />
+<img src="JavaPic\producer_consumer.png" style="zoom:50%" />
 
 * Producers API：允许应用程序发布记录流至一个或多个Kafka的主题(Topics)
 * Consumers API：允许应用程序订阅一个或多个主题，并处理这些主题接收到的记录流
@@ -47,14 +47,14 @@
 
   一个Topic可以有由0、1或多个消费者订阅。如下图所示，每个Topic，Kafka集群都会维护一个分区Log，每一个分区都是一个顺序的、不可变的消息队列， 并且可以持续的添加。分区中的消息都被分了一个序列号，称之为偏移量(Offset)，在每个分区中此偏移量都是唯一的。 
 
-![](\JavaPic\Topic.png)
+![](JavaPic\Topic.png)
 
 * Offset
 
   Kafka集群保持所有的消息，直到它们过期(无论消息是否被消费)。消费者所持有的元数据就是偏移量(Offset)，即Offset由消费者来控制：当消费者消费消息的时候，偏移量也线性的的增加。消费者可以将偏移量重置为更早的位置，重新读取消息。这种设计使得消费者的操作不会影响其它消费者对此Log的处理。
   
 
-<img src="\JavaPic\Offset.png" style="zoom:90%" />
+<img src="JavaPic\Offset.png" style="zoom:90%" />
 
  Kafka中采用分区设计的优点：
 
@@ -85,11 +85,11 @@
 
 * 数据流程
 
-  <img src="\JavaPic\Dataflow.jpg" style="zoom:80%" />
+  <img src="JavaPic\Dataflow.jpg" style="zoom:80%" />
 
   * 数据生产流程
 
-    ![](\JavaPic\flow.png)
+    ![](JavaPic\flow.png)
     
     写入一条数据，需要指定四个参数：Topic、Partition、Key和Value，其中Topic和Value(要写入的数据)是必须要指定的，而Key和Partition是可选的。 
     对于一条记录，先对其进行序列化，然后根据Topic和Partition，放进对应的发送队列中。如果Partition没填，分为两种情况：
@@ -112,7 +112,7 @@
 
 ## 二、集群架构
 
-![](\JavaPic\cluster.png)
+![](JavaPic\cluster.png)
 
 * Producer
   生产者将数据推送给。 当代理启动时，所有生产者搜索它并自动向该代理发送消息。Kafka生产者不等待来自代理的确认，并且发送消息的速度与代理可以处理的一样快
@@ -234,17 +234,17 @@
   }
 ```
 
-  * | S.No | 配置设置和说明                                               |
-    | ---- | :----------------------------------------------------------- |
-  | 1    | **client.id** 标识生产者应用程序                             |
-  | 2    | **producer.type** 同步或异步                                 |
-  | 3    | **acks** acks配置控制生产者请求下的标准是完全的              |
-  | 4    | **retrie** 如果生产者请求失败，则使用特定值自动重试          |
-  | 5    | **linger.ms** 达到linger.ms设置的时间，即使数据没达到batch.size，也将这个批次发送出去 |
-  | 6    | **key.serializer** 序列化器接口的键                          |
-  | 7    | **value.serializer** 序列化器接口的值                        |
-  | 8    | **batch.size** 当多个消息发送到相同分区时,生产者会将消息打包到一起，以减少请求交互，默认是16KB |
-  | 9    | **buffer.memory** 控制生产者可用于缓冲的存储器的总量         |
+| S.No | 配置设置和说明                                               |
+| ---- | :----------------------------------------------------------- |
+| 1    | **client.id** 标识生产者应用程序                             |
+| 2    | **producer.type** 同步或异步                                 |
+| 3    | **acks** acks配置控制生产者请求下的标准是完全的              |
+| 4    | **retrie** 如果生产者请求失败，则使用特定值自动重试          |
+| 5    | **linger.ms** 达到linger.ms设置的时间，即使数据没达到batch.size，也将这个批次发送出去 |
+| 6    | **key.serializer** 序列化器接口的键                          |
+| 7    | **value.serializer** 序列化器接口的值                        |
+| 8    | **batch.size** 当多个消息发送到相同分区时,生产者会将消息打包到一起，以减少请求交互，默认是16KB |
+| 9    | **buffer.memory** 控制生产者可用于缓冲的存储器的总量         |
 
 
   * Consumer:
@@ -299,10 +299,7 @@
      }
   }
   ```
-
-
-
-*	| S.No | 方法和说明                                                   |
+| S.No | 方法和说明                                                   |
 | ---- | :----------------------------------------------------------- |
 | 1    | **public java.util.Set< TopicPar- tition>** assignment()获取由用户当前分配的分区集。 |
 | 2    | **public string subscription()**订阅给定的主题列表以获取动态签名的分区。 |
@@ -320,7 +317,7 @@
 
 ## 五、与其他消息队列对比
 
-![](\JavaPic\kafkaCompare.png)
+![](JavaPic\kafkaCompare.png)
 
 ## 六、相关问题
 
